@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{de188c75-6bb9-46a7-8b5a-008c0a675826}</ProjectGuid>
+        <ProjectHome />
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile>app.js</StartupFile>
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="package.json" />
+        <Compile Include="app.js" />
+        <Compile Include="server.js" />
+        <Compile Include="routes\fetch.js" />
+        <Compile Include="routes\index.js" />
+        <Content Include="views\fetch.ejs" />
+        <Content Include="views\index.ejs" />
+        <Content Include="views\layout.ejs" />
+        <Content Include="public\images\glyphicons-halflings-white.png" />
+        <Content Include="public\images\glyphicons-halflings.png" />
+        <Content Include="public\images\ajax-loader.gif" />
+        <Compile Include="public\javascripts\bootstrap-alert.js" />
+        <Compile Include="public\javascripts\bootstrap-button.js" />
+        <Compile Include="public\javascripts\bootstrap-carousel.js" />
+        <Compile Include="public\javascripts\bootstrap-collapse.js" />
+        <Compile Include="public\javascripts\bootstrap-dropdown.js" />
+        <Compile Include="public\javascripts\bootstrap-modal.js" />
+        <Compile Include="public\javascripts\bootstrap-popover.js" />
+        <Compile Include="public\javascripts\bootstrap-scrollspy.js" />
+        <Compile Include="public\javascripts\bootstrap-tab.js" />
+        <Compile Include="public\javascripts\bootstrap-tooltip.js" />
+        <Compile Include="public\javascripts\bootstrap-transition.js" />
+        <Compile Include="public\javascripts\bootstrap-typeahead.js" />
+        <Content Include="public\stylesheets\bootstrap-responsive.css" />
+        <Content Include="public\stylesheets\bootstrap.css" />
+        <Content Include="public\stylesheets\style.css" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="public\images" />
+        <Folder Include="public\javascripts" />
+        <Folder Include="public\stylesheets" />
+        <Folder Include="routes" />
+        <Folder Include="views" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

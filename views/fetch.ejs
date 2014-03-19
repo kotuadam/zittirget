@@ -1,0 +1,20 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+
+  var socket = io.connect();
+
+  socket.on('progress', function(data){
+  console.log(data);
+    $("#test").html(data);
+  });
+
+  $(document).ready(function(){
+  $("#txt").click(function(){
+    socket.emit('msg', "button clicked");
+  });
+});
+
+</script>
+<input type="button" id="txt" value="click">
+<div id="test"></div>

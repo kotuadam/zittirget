@@ -1,0 +1,128 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect();
+  socket.on('progress', function(data){
+    $("#prgrs").html(data);
+    $("#prgrsbar").attr('style', 'width:' + data);
+  });
+
+  socket.on('err', function(data){
+  reset();
+    $("#err").addClass('alert alert-error');
+    $("#err").html(data.Message);
+  });
+
+  socket.on('archive', function(data){
+      $("#dl").html(data.Message);
+    });
+
+  socket.on('complete', function(data){
+      $("#dl").html('You can download the file at <i class="icon-download"> &nbsp;</i> <a href="'+ data.Url +'">' + data.Url + '</a> ('+data.Size+' bytes)');
+    });
+
+  socket.on('status', function(data){
+      $("#status").addClass('label label-important');
+      $("#status").html(data.Message);
+    });
+
+    function reset()
+    {
+    $("#prgrs").html('');
+          $("#status").html('');
+          $("#dl").html('');
+          $("#err").html('');
+    }
+  $(document).ready(function(){
+    $('#tblDownloads').empty();
+      $("#downloadTemplate").tmpl([<%- downloadList%>]).appendTo("#tblDownloads");
+
+  $("#info").hide();
+
+  $("#history").click(function(){
+    $("#downloadList").fadeToggle("slow", "linear");
+
+  });
+
+  $("#btn").click(function(){
+      $("#prgrs").html('');
+      $("#status").html('');
+      $("#dl").html('');
+      $("#err").html('');
+      $("#status").removeClass();
+      $("#err").removeClass();
+      $("#prgrsbar").attr('style', 'width: 0%');
+	  $("#info").show();
+      $("#prgrs").html('starting download...');
+
+    if($("#url").val().length !=0){
+      socket.emit('msg', $("#url").val());
+}
+else{
+$("#err").addClass('alert alert-error');
+$("#err").html("Please enter url");
+}
+
+  });
+});
+
+</script>
+<br>
+<header class="jumbotron subhead" id="overview">
+  <h1>Welcome to ZittirGet a.k.a Zget downloader.</h1>
+  <p class="lead">ZittirGet is a page that lets you download any file (.exe, .jpg, .png, .pdf etc..) in zip format.
+  This page is made for the people that are behind firewall and are not allowed to download some certain extensions due to firewall rules.</p>
+</header>
+
+<br>
+<div class="row">
+<div class="span8">
+<div class="" id="err"></div>
+</div>
+</div>
+
+<div class="row">
+<div class="span9">
+
+
+<div class="input-prepend">
+                <span class="add-on"><strong>http://</strong></span><input type="text" class="span7" placeholder="enter your URL here" id="url">&nbsp;<input type="submit" class="btn-primary" id="btn" value="Download!">
+              </div>
+</div>
+</div>
+<br>
+<div id="info" class="5">
+<span id="prgrs"></span><span class="progress progress-success progress-striped" style="margin-bottom: 9px;">
+                                <div class="bar" style="" id="prgrsbar"></div>
+                              </span>
+<br>
+<span id="dl" class=""></span>&nbsp;&nbsp;<span id="status" class=""></span>
+</div><br><br>
+<p>
+<a href="" onClick="return false;" id="history"><i class="icon-list"></i> History</a>
+</p>
+<div id="downloadList">
+
+<script id="downloadTemplate" type="text/x-jQuery-tmpl">
+            <tr>
+            <td class="span8">${url}</td>
+            <td>${bytes}</td>
+            <td>${fileName}</td>
+            <td>${date}</td>
+            </tr>
+</script>
+
+<table class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                <th>url</th>
+                <th>bytes</th>
+                <th>filename</th>
+                <th>date</th>
+                </tr>
+            </thead>
+            <tbody id="tblDownloads"></tbody>
+</table>
+</div>
